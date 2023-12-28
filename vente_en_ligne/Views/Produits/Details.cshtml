@@ -7,42 +7,47 @@
 <link rel="stylesheet" href="/css/CreateU.css" />
 
 
-<div class="login-box">
+<div class="login-box" style="margin-bottom:40px;">
     <div class="card">
         <nav>
-            <svg class="arrow" style="color:RED;" href="@Url.Action("Index", "Home")" version="1.1" viewBox="0 0 512 512" width="512px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><polygon points="352,115.4 331.3,96 160,256 331.3,416 352,396.7 201.5,256 " stroke="#727272" /></svg>
-            <a style="color:RED;font:bold;" href="@Url.Action("Index", "Home")"> Back to home</a>
+            <svg class="arrow" style="color:#D41818;" href="@Url.Action("Index", "Home")" version="1.1" viewBox="0 0 512 512" width="512px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><polygon points="352,115.4 331.3,96 160,256 331.3,416 352,396.7 201.5,256 " stroke="#727272" /></svg>
+            <a style="color: white; font-family: 'Berlin Sans FB'; margin-top:8px; font-size:14px;" href="@Url.Action("Index", "Home")">
+                &lt; Back to home
+            </a>
+
         </nav>
         <div class="photo">
-            <img src="data:image/jpeg;base64,@Convert.ToBase64String(Model.ImageData)" alt="Produit Image" style="max-width: 100%; height: auto;" />
+            <img src="data:image/jpeg;base64,@Convert.ToBase64String(Model.ImageData)" alt="Produit Image" style="max-width: 100%; height: auto; border: 2px solid #8FD9F5;" />
             <form asp-action="AjouterAuPanier" asp-controller="Paniers" method="post">
                 <input type="hidden" name="idProduit" value="@Model.IdPr" />
-                <button class="cart-button" style="background:darkred; color:white;font-weight: bold;height:50px;width:80%">Add to Cart</button>
+                <button class="cart-button" style="background:#8FD9F5; color:#123087; font:bold;font-size: 18px;font-family: 'Berlin Sans FB'; margin-top:40px;height:50px;width:80%">Add to Cart</button>
             </form>
         </div>
         <div class="description">
-            <h2 style="color:white;font:bold;font-size: 28px;"> @Html.DisplayFor(model => model.Name)</h2>
+            <h2 style="color:#8FD9F5; font-size: 28px; font-family: 'Berlin Sans FB'; border: 2px solid #8FD9F5; padding: 10px;">
+                @Html.DisplayFor(model => model.Name)
+            </h2>
 
-            <div class="align" style="color:RED;font:bold;font-size: 22px;">
-                <label>Price :</label>
-                <a style="color:white;font:bold; margin-left:20px;font-size: 22px;">@Html.DisplayFor(model => model.prix)<label>$</label></a>
+            <div class="align" style="color:#8FD9F5;font-size:18px;">
+                <label style="color:#8FD9F5;font-family: 'Berlin Sans FB';">Price :</label>
+                <a style="color:white; margin-left:20px;font-size: 18px;">@Html.DisplayFor(model => model.prix)<label>$</label></a>
             </div>
-            <div class="align" style="color:red;font:bold;font-size: 22px;">
-                <label>Contact :</label>
-                <a style="color:white;font:bold; margin-left:20px;font-size: 22px;" "> @ViewBag.OwnerTelephone</a>
+            <div class="align" style="color:##8FD9F5;font-size: 18px;">
+                <label style="color:#8FD9F5;font-family: 'Berlin Sans FB';">Contact :</label>
+                <a style="color:white; margin-left:20px;font-size: 18px;" "> @ViewBag.OwnerTelephone</a>
             </div>
-            <div class="align" style="color:red;font:bold;font-size: 22px;">
-                <label>Last Name :</label>
-                <a style="color:white;font:bold; margin-left:20px;font-size: 22px;"> @ViewBag.OwnerName</a>
+            <div class="align" style="color:#8FD9F5;font-size: 18px;">
+                <label style="color:#8FD9F5;font-family: 'Berlin Sans FB';">Last Name :</label>
+                <a style="color:white;margin-left:20px;font-size: 18px;"> @ViewBag.OwnerName</a>
             </div>
-            <div class="align" style="color:red;font:bold;font-size: 22px;">
-                <label>FirstName :</label>
-                <a style="color:white;font:bold; margin-left:20px;font-size: 22px;"> @ViewBag.OwnerFirstname</a>
+            <div class="align" style="color:#8FD9F5;font-size: 18px;">
+                <label style="color:#8FD9F5;font-family: 'Berlin Sans FB';">FirstName :</label>
+                <a style="color:white; margin-left:20px;font-size: 18px;"> @ViewBag.OwnerFirstname</a>
             </div>
-            <div class="align" style="color:red;font:bold;font-size: 22px;">
-                <label>Details :</label>
+            <div class="align" style="color:#8FD9F5;font-size: 18px;">
+                <label style="color:#8FD9F5;font-family: 'Berlin Sans FB';font-size: 18px;">Details :</label>
             </div>
-            <a style="color:white;font:bold; margin-left:20px;font-size: 19px;">@Html.DisplayFor(model => model.Description)
+            <a style="color:white; margin-left:20px;font-size: 18px;">@Html.DisplayFor(model => model.Description)
         </div>
     </div>
-</div>
+</div></div>
