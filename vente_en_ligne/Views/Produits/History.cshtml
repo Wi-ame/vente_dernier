@@ -1,0 +1,71 @@
+﻿@model List<vente_en_ligne.Models.Produit>
+
+@{
+    Layout = null;
+}
+
+<!-- Autres éléments de la vue partielle -->
+@* Liens vers les fichiers CSS spécifiques à DataTable et Bootstrap *@
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.datatables.net/v/bs4-4.6.0/jq-3.7.0/dt-1.13.8/b-2.4.2/fc-4.3.0/sc-2.3.0/sb-1.6.0/sp-2.2.0/sl-1.7.0/datatables.min.css" rel="stylesheet">
+
+<div id="elm">
+   
+        <table class="table">
+            <thead >
+                <div id="title">Owner's history</div>
+                <tr>
+                    <th id="hed">Owner ID</th>
+                    <th id="hed">Added Product</th>
+                    <th id="hed">Date</th>
+                    <th id="hed">Price</th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach (var item in Model)
+            {
+                <tr id="ligne">
+                    <td>@item.IDP</td>
+                    <td>@item.Name</td>
+                    <td>@item.DateDepot.ToShortDateString()</td>
+                    <td>@item.prix</td>
+                </tr>}
+            </tbody>
+        </table>
+</div>
+<style>
+    #title{
+        font-size:50px;
+        text-align: center;
+        color: #317de6;
+        font-weight:200;
+    }
+    #elm{
+        margin-top: 20px;
+        margin-right: 10px;
+        margin-left:10px;
+        margin-bottom:10px;
+        font-family: 'Berlin Sans FB';
+        color: #317de6;
+    }
+    #hed{
+        background-color: #001f3f;
+        font-family:'Berlin Sans FB';
+        color: white;
+    }
+    #ligne{
+        background-color:
+    }
+</style>
+<!-- Scripts JavaScript spécifiques à DataTable et Bootstrap -->
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+<script src="https://cdn.datatables.net/v/bs4-4.6.0/jq-3.7.0/dt-1.13.8/b-2.4.2/fc-4.3.0/sc-2.3.0/sb-1.6.0/sp-2.2.0/sl-1.7.0/datatables.min.js"></script>
+
+<!-- Initialisation DataTable pour les tables spécifiques -->
+<script>
+    $(document).ready(function () {
+        $('.table').DataTable();
+    });
+</script>
+

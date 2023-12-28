@@ -1,0 +1,44 @@
+﻿@model vente_en_ligne.Models.Categories
+<link href="~/css/deleteproprio.css" rel="stylesheet" />
+<main>
+    <div class="blur"></div>
+    <div class="container">
+        <form asp-action="DeleteConfirmed" method="post" id="removeCat">
+            <img src="~/img/supprimer.png" class="photo" />
+            <br>
+            <input asp-for="CategorieName" class="datos" type="text" placeholder="Name of the category">
+            <br>
+            <br>
+            <input class="boton reset" type="submit" value="Delete">
+        </form>
+    </div>
+</main>
+
+<script>
+    // Attendez que le document soit prêt
+    $(document).ready(function () {
+        // Interceptez la soumission du formulaire
+        $('#removeCat').submit(function (e) {
+            e.preventDefault();
+
+            var form = $(this);
+            var formData = form.serialize();
+
+            // Envoyez la requête AJAX
+            $.ajax({
+                type: 'POST',
+                url: form.attr('action'), // Utilisez l'URL spécifiée dans l'attribut action du formulaire
+                data: formData,
+                success: function () {
+                    alert('La suppression a été faite avec succès.');
+                    // Rechargez la page pour afficher les modifications mises à jour
+                    location.reload();
+                },
+                error: function (xhr) {
+                    alert('Une erreur s\'est produite lors de la suppression.');
+                    console.log(xhr.responseText); // Afficher la réponse détaillée dans la console du navigateur
+                }
+            });
+        });
+    });
+</script>

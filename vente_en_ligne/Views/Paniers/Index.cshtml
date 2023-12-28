@@ -1,0 +1,141 @@
+﻿@model IEnumerable<vente_en_ligne.Models.Panier>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["ErrorMessage"]
+    </div>
+}
+<style>
+    body {
+        background-color: #AED6F1;
+    }
+
+    .text-center {
+        background-color: white; /* Set background color for the form */
+        padding: 20px; /* Add padding to the form */
+        border-radius: 10px; /* Add border radius for a rounded appearance */
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+        margin: 20px auto; /* Center the form */
+        max-width: 600px; /* Set a maximum width for the form */
+    }
+
+    table {
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    #tb {
+        background-color: #001f3f;
+        border: 4px solid #D41818;
+    }
+
+    #text h2 {
+        text-align: center;
+        margin-top: 40px;
+        margin-bottom: 40px;
+        color: #D41818;
+        font-size: 35px;
+        font-family: 'Berlin Sans FB';
+    }
+
+    th {
+        color: #AED6F1;
+        font-family: 'Berlin Sans FB';
+        text-align: center;
+        font-size: 16px;
+    }
+
+    td {
+        color: white;
+        text-align: center;
+        font-size: 16px;
+    }
+
+        td a {
+            color: #AED6F1;
+        }
+
+    #somme {
+        width: 390px;
+        height: 38px;
+        margin-bottom: 14px;
+        background-color: #001f3f;
+        color: #D41818;
+        font-size: 19px;
+    }
+
+</style>
+
+<div id="text">
+    <h2>Shopping Cart</h2>
+</div>
+
+<form asp-action="YourAction" asp-controller="YourController" method="post">
+    <div class="text-center" id="tb">
+        <table class="table" id="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.IDPro)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Quantité)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Total)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IDPro)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Quantité)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Total)
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <div class="text-center" id="somme">
+            <label id="totalLabel" style="margin-right:auto%">Somme totale : </label>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    // Récupérez toutes les cellules de la colonne "Total"
+                    var totalCells = document.querySelectorAll('td:nth-child(3)'); // 3 correspond à la colonne "Total"
+
+                    // Convertissez les valeurs des cellules en nombres et calculez la somme
+                    var totalSum = Array.from(totalCells).reduce(function (sum, cell) {
+                        return sum + parseFloat(cell.textContent || cell.innerText);
+                    }, 0);
+
+                    // Affichez la somme dans le label
+                    document.getElementById('totalLabel').innerText += totalSum.toFixed(2);
+                });
+            </script>
+
+        </div>
+        <button type="submit" formaction="@Url.Action("Authent", "Utilisateurs")" class="btn btn-primary" style="background:#AED6F1;color:#001f3f;border: 1px solid #ccc;font-family: 'Berlin Sans FB'; font-size:22px; ">
+            Checkout
+        </button>
+
+    </div>
+
+</form>

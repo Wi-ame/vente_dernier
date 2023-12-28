@@ -1,0 +1,48 @@
+﻿@model vente_en_ligne.Models.Produit
+
+@{
+    ViewData["Title"] = "Details";
+}
+<link rel="stylesheet" href="/css/DetailsPanier.css" />
+<link rel="stylesheet" href="/css/CreateU.css" />
+
+
+<div class="login-box">
+    <div class="card">
+        <nav>
+            <svg class="arrow" style="color:RED;" href=" @Url.Action("Index", "Home")" version="1.1" viewBox="0 0 512 512" width="512px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><polygon points="352,115.4 331.3,96 160,256 331.3,416 352,396.7 201.5,256 " stroke="#727272" /></svg>
+            <a style="color:RED;font:bold;" href=" @Url.Action("Index", "Home")"> Back to home</a>
+        </nav>
+        <div class="photo">
+            <img src="data:image/jpeg;base64,@Convert.ToBase64String(Model.ImageData)" alt="Produit Image" />
+            <form asp-action="AjouterAuPanier" asp-controller="Paniers" method="post">
+                <input type="hidden" name="idProduit" value="@Model.IdPr" />
+                <button class="cart-button" style="background:darkred; color:white;margin-top:80px; font-weight: bold;height:50px;width:80%">Add to Cart</button>
+            </form>
+        </div>
+        <div class="description">
+            <h2 style="color:white;font:bold;font-size: 28px;"> @Html.DisplayFor(model => model.Name)</h2>
+
+            <div class="align" style="color:RED;font:bold;font-size: 22px;">
+                <label>Price :</label>
+                <a style="color:white;font:bold; margin-left:20px;font-size: 22px;">@Html.DisplayFor(model => model.prix)<label>$</label></a>
+            </div>
+            <div class="align" style="color:red;font:bold;font-size: 22px;">
+                <label>Contact :</label>
+                <a style="color:white;font:bold; margin-left:20px;font-size: 22px;" "> @ViewBag.OwnerTelephone</a>
+            </div>
+            <div class="align" style="color:red;font:bold;font-size: 22px;">
+                <label>Last Name :</label>
+                <a style="color:white;font:bold; margin-left:20px;font-size: 22px;"> @ViewBag.OwnerName</a>
+            </div>
+            <div class="align" style="color:red;font:bold;font-size: 22px;">
+                <label>FirstName :</label>
+                <a style="color:white;font:bold; margin-left:20px;font-size: 22px;"> @ViewBag.OwnerFirstname</a>
+            </div>
+            <div class="align" style="color:red;font:bold;font-size: 22px;">
+                <label>Details :</label>
+            </div>
+            <a style="color:white;font:bold; margin-left:20px;font-size: 19px;">@Html.DisplayFor(model => model.Description)
+        </div>
+    </div>
+</div>

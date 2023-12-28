@@ -1,0 +1,86 @@
+﻿@model vente_en_ligne.Models.Proprietaire
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/js/modifyproprio.js"></script>
+<link href="~/css/createprop.css" rel="stylesheet" />
+
+<div class='box'>
+    <form asp-action="ModifyForm" method="post" id="modifyForm">
+        <div class='box-form'>
+            <div class='box-login-tab'></div>
+            <div class='box-login'>
+                <div class='fieldset-body' id='login_form'>
+                    <p class='field'>
+                        <label asp-for="Email">Email</label>
+                        <input asp-for="Email" type='text' id='Email' name='Email' title='Email' />
+                    </p>
+                    <p class='field'>
+                        <label asp-for="password">Password</label>
+                        <input asp-for="password" type='text' id='Password' name='password' title='Password' />
+                    </p>
+                    <p class='field'>
+                        <label asp-for="Nom">LastName</label>
+                        <input asp-for="Nom" type='text' id='LastName' name='Nom' title='LastName' />
+                    </p>
+                    <p class='field'>
+                        <label asp-for="Prenom">First Name</label>
+                        <input asp-for="Prenom" type='text' id='FirstName' name='Prenom' title='FirstName' />
+                    </p>
+                    <p class='field'>
+                        <label asp-for="INterID">CIN/Passeport</label>
+                        <input asp-for="INterID" type='text' id='Passport' name='INterID' title='Passport' />
+                    </p>
+                    <p class='field'>
+                        <label asp-for="Tele">Phone</label>
+                        <input asp-for="Tele" type='text' id='Phone' name='Tele' title='Phone' />
+                    </p>
+                    <p class='field'>
+                        <label asp-for="NomEntreprise">Company name</label>
+                        <input asp-for="NomEntreprise" type='text' id='Company' name='NomEntreprise' title='Company' />
+                    </p>
+                    <p class='field'>
+                        <label asp-for="AdresseEntreprise">Adress</label>
+                        <input asp-for="AdresseEntreprise" type='text' id='Adresse' name='AdresseEntreprise' title='Password' />
+                    </p>
+                    <input type='submit' id='do_login' value='Modify' onclick="saveModifiedData()" title='Get Started' />
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<script>
+    // Attendez que le document soit prêt
+    $(document).ready(function () {
+        // Interceptez la soumission du formulaire
+        $('#modifyForm').submit(function (e) {
+            e.preventDefault();
+
+            var form = $(this);
+            var formData = form.serialize();
+
+            // Envoyez la requête AJAX
+            $.ajax({
+                type: 'POST',
+                url: form.attr('action'), // Utilisez l'URL spécifiée dans l'attribut action du formulaire
+                data: formData,
+                success: function () {
+                    alert('Les modifications ont été enregistrées avec succès.');
+                    // Rechargez la page pour afficher les modifications mises à jour
+                    location.reload();
+                },
+                error: function (xhr) {
+                    alert('Une erreur s\'est produite lors de la soumission du formulaire.');
+                    console.log(xhr.responseText); // Afficher la réponse détaillée dans la console du navigateur
+                }
+            });
+        });
+    });
+</script>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,0 +1,49 @@
+﻿@model vente_en_ligne.Models.Categories
+<script src="~/js/createprop.js"></script>
+<link href="~/css/createcat.css" rel="stylesheet" />
+<div class='box'>
+    <div class='box-form'>
+        <div class='box-login-tab'></div>
+        <div class='box-login'>
+            <form asp-action="CreateCat" method="post" class="sign-in-form" >
+                <div class="text-danger"></div>
+                <div class='fieldset-body' id='login_form'>
+                    <p class='field'>
+                        <label asp-for='CategorieName'>Category Name</label>
+                        <input asp-for='CategorieName' type='text' />
+                        <span class="text-danger"></span>
+                    </p>
+                    <input type='submit' id='do_login' value='Create' title='Get Started' />
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+</div>
+<script>
+    // Capture de la soumission du formulaire
+    $('#form').submit(function (e) {
+        e.preventDefault(); // Empêche l'envoi du formulaire par défaut
+
+        var form = this;
+        var formData = $(form).serialize(); // Récupère les données du formulaire
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("CreateCat")', // Votre URL d'action du contrôleur
+            data: formData,
+            success: function () {
+                alert('La catégorie a été créé avec succés.');
+                // Effacer les champs du formulaire après la soumission réussie
+                form.reset();
+                // Effacer le message de succès après quelques secondes
+                setTimeout(function () {
+                    $('.alert-success').fadeOut();
+                }, 3000); // Disparition du message de succès après 3 secondes
+            },
+            error: function () {
+                alert('Une erreur s\'est produite lors de la création de la catégorie.');
+            }
+        });
+    });
+</script>

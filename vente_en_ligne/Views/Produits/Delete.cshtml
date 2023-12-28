@@ -1,0 +1,69 @@
+﻿@model vente_en_ligne.Models.Produit
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Produit</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.prix)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.prix)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IDC)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IDC)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IDP)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IDP)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DateDepot)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DateDepot)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ImageData)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ImageData)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.stock)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.stock)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="IdPr" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

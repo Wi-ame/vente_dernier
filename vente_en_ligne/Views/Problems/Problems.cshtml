@@ -1,0 +1,63 @@
+﻿@model List<vente_en_ligne.Models.Problem>
+
+@{
+    Layout = null;
+}
+<!-- Autres éléments de la vue partielle -->
+@* Liens vers les fichiers CSS spécifiques à DataTable et Bootstrap *@
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.datatables.net/v/bs4-4.6.0/jq-3.7.0/dt-1.13.8/b-2.4.2/fc-4.3.0/sc-2.3.0/sb-1.6.0/sp-2.2.0/sl-1.7.0/datatables.min.css" rel="stylesheet">
+
+<div id="elm">
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th id="hed">Problem</th>
+                <th id="hed">User</th>
+                <th id="hed">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr id="ligne">
+                    <td>@item.Id</td>
+                    <td>@item.IDU</td>
+                    <td>@item.Comment</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<style>
+    #elm {
+        margin-top: 20px;
+        margin-right: 10px;
+        margin-left: 10px;
+        margin-bottom: 10px;
+        font-family: 'Berlin Sans FB';
+        color: #317de6;
+    }
+
+    #hed {
+        background-color: #001f3f;
+        font-family: 'Berlin Sans FB';
+        color: white;
+    }
+
+    #ligne {
+        background-color:
+    }
+</style>
+<!-- Scripts JavaScript spécifiques à DataTable et Bootstrap -->
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+<script src="https://cdn.datatables.net/v/bs4-4.6.0/jq-3.7.0/dt-1.13.8/b-2.4.2/fc-4.3.0/sc-2.3.0/sb-1.6.0/sp-2.2.0/sl-1.7.0/datatables.min.js"></script>
+
+<!-- Initialisation DataTable pour les tables spécifiques -->
+<script>
+    $(document).ready(function () {
+        $('.table').DataTable();
+    });
+</script>

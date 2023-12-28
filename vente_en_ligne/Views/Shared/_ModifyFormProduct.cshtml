@@ -1,0 +1,84 @@
+﻿@model vente_en_ligne.Models.Produit
+<link rel="stylesheet" href="/css/stylePr.css" />
+<script src="~/js/ModifyProduct.js"></script>
+<form asp-action="Edit" method="post" enctype="multipart/form-data" id="modifyForm">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="corps-formulaire">
+        <div class="gauche">
+            <div class="groupe">
+                <label asp-for="IdPr">Product's Barcode</label>
+                <input type="text" asp-for="IdPr" id="idPr" autocomplete="off" readonly/>
+                <i class="fas fa-code fa-lg me-2" style="color: red;"></i>
+            </div>
+            <div class="groupe">
+                <label asp-for="Name">Product's Name</label>
+                <input type="text" name="Name" id="Name" asp-for="Name" autocomplete="off" />
+                <i class="fas fa-shopping-bag fa-lg me-2" style="color: red;"></i>
+            </div>
+            <div class="groupe">
+                <label asp-for="prix">Give the price</label>
+                <input type="text" name="prix" id="prix" asp-for="prix" autocomplete="off" />
+                <i class="fas fa-dollar-sign fa-lg me-2" style="color: red;"></i>
+            </div>
+        </div>
+        <div class="droite">
+            <div class="groupe">
+                <label asp-for="stock">The quantity offered</label>
+                <input type="text" name="stock" id="stock" asp-for="stock" autocomplete="off" />
+                <i class="fas fa-cubes fa-lg me-2" style="color: red;"></i>
+            </div>
+            <div class="groupe">
+                <label asp-for="Description">Description</label>
+                <input type="text" name="Description" id="description" asp-for="Description" autocomplete="off" />
+                <i class="fas fa-info-circle" style="color:red;"></i>
+            </div>
+            <div class="groupe">
+                <label>Actual Category</label>
+                <input name="Category" id="Category" autocomplete="off" disabled />
+                <i class="fas fa-shapes fa-lg me-2" style="color: red;"></i>
+                <select asp-for="IDC" asp-items="@(ViewData["CategoriesList"] as List<SelectListItem>)" style="width: 100%;" placeholder="" id="categorieName">
+                    <option value="" selected>Change the category</option>
+                </select>
+                <span asp-validation-for="IDC" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="pied-formulaire" align="center" style="margin-top: 20px;">
+        <input id="button" type="submit" style="background-color: red; color: white;" value="Modify" onclick="saveModifiedData()" />
+    </div>
+</form>
+<script>
+    // Attendez que le document soit prêt
+    $(document).ready(function () {
+        // Interceptez la soumission du formulaire
+        $('#modifyForm').submit(function (e) {
+            e.preventDefault();
+
+            var form = $(this);
+            var formData = form.serialize();
+
+            // Envoyez la requête AJAX
+            $.ajax({
+                type: 'POST',
+                url: form.attr('action'), // Utilisez l'URL spécifiée dans l'attribut action du formulaire
+                data: formData,
+                success: function () {
+                    alert('Les modifications ont été enregistrées avec succès.');
+                    // Rechargez la page pour afficher les modifications mises à jour
+                    location.reload();
+                },
+                error: function (xhr) {
+                    alert('Une erreur s\'est produite lors de la soumission du formulaire.');
+                    console.log(xhr.responseText); // Afficher la réponse détaillée dans la console du navigateur
+                }
+            });
+        });
+    });
+</script>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

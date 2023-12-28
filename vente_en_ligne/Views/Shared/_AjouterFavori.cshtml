@@ -1,0 +1,36 @@
+﻿@model vente_en_ligne.Models.Favori
+<link href="~/css/modifyproprio.css" rel="stylesheet" />
+<script src="~/js/modifyproduct.js"></script>
+<form asp-action="Create" method="post" id="form">
+	<input type="text" asp-for="IDP" class="feedback-input" placeholder="CIN or Passeport" id="searchInput" />
+	<input type="submit" value="Add to favorite" id="addFav"/>
+</form>
+
+<script>
+    // Attendez que le document soit prêt
+    $(document).ready(function () {
+        // Interceptez la soumission du formulaire
+        $('form').submit(function (e) {
+            e.preventDefault();
+
+            var form = $(this);
+            var formData = form.serialize();
+
+            // Envoyez la requête AJAX
+            $.ajax({
+                type: 'POST',
+                url: form.attr('action'), // Utilisez l'URL spécifiée dans l'attribut action du formulaire
+                data: formData,
+                success: function () {
+                    alert('L\'ajout a été réalisé avec succés.');
+                    // Rechargez la page pour afficher les modifications mises à jour
+                    location.reload();
+                },
+                error: function (xhr) {
+                    alert('Une erreur s\'est produite lors de l\'ajout dans la liste de favoris.');
+                    console.log(xhr.responseText); // Afficher la réponse détaillée dans la console du navigateur
+                }
+            });
+        });
+    });
+</script>

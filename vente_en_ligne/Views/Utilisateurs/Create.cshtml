@@ -1,0 +1,38 @@
+﻿@model vente_en_ligne.Models.Utilisateur
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<link type="text/css" rel="stylesheet" href="/css/CreateU.css" />
+<div class="login-box" style="font-family: 'Berlin Sans FB';">
+    <h2 style="color:#D41818;font-family: 'Berlin Sans FB';">Become Client</h2>
+    <form asp-action="Create" method="post">
+        <div class="user-box">
+            <div class="align">
+                <div class="input-group">
+                    <input asp-for="Prenom" class="form-control" placeholder="Prenom" required />
+                </div>
+                <div class="input-group">
+                    <input asp-for="Nom" class="form-control" placeholder="Nom" required />
+                </div>
+            </div>
+            <div class="align">
+                <div class="input-group">
+                    <input asp-for="Email" class="form-control" placeholder="Email" required />
+                </div>
+                <div class="input-group">
+                    <input asp-for="Tel" class="form-control" placeholder="Tel" required />
+                </div>
+            </div>
+        </div>
+        <button type="submit" style="background:#D41818; color:white;margin-left:20px; margin-bottom:20px;">
+
+            Submit
+        </button>
+        <button id="return" onclick="location.href='@Url.Action("Authent", "Utilisateurs")'" style="background:#D41818; color:white; margin-left:160px;margin-bottom:20px;">
+            return
+        </button>
+
+    </form>
+</div>
