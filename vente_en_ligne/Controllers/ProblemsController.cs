@@ -49,11 +49,21 @@ namespace vente_en_ligne.Controllers
             return View(problem);
         }
 
-        // GET: Problems/Create
+        [HttpGet]
         public IActionResult Create()
         {
-            return View();
+            if (TempData.TryGetValue("UtilisateurId", out object utilisateurIdObj) && utilisateurIdObj is int utilisateurId)
+            {
+                ViewBag.UtilisateurId = utilisateurId;
+                return View();
+            }
+            else
+            {
+                // Gérer le cas où l'ID de l'utilisateur n'est pas présent dans TempData
+                return RedirectToAction("Index", "Home");
+            }
         }
+
 
         // POST: Problems/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
@@ -66,7 +76,7 @@ namespace vente_en_ligne.Controllers
             {
                 _context.Add(problem);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index","Home");
             }
             return View(problem);
         }

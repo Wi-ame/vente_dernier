@@ -10,14 +10,14 @@
 <div class="login-box">
     <div class="card">
         <nav>
-            <svg class="arrow" style="color:RED;" href=" @Url.Action("Index", "Home")" version="1.1" viewBox="0 0 512 512" width="512px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><polygon points="352,115.4 331.3,96 160,256 331.3,416 352,396.7 201.5,256 " stroke="#727272" /></svg>
-            <a style="color:RED;font:bold;" href=" @Url.Action("Index", "Home")"> Back to home</a>
+            <svg class="arrow" style="color:RED;" href="@Url.Action("Index", "Home")" version="1.1" viewBox="0 0 512 512" width="512px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><polygon points="352,115.4 331.3,96 160,256 331.3,416 352,396.7 201.5,256 " stroke="#727272" /></svg>
+            <a style="color:RED;font:bold;" href="@Url.Action("Index", "Home")"> Back to home</a>
         </nav>
         <div class="photo">
-            <img src="data:image/jpeg;base64,@Convert.ToBase64String(Model.ImageData)" alt="Produit Image" />
+            <img src="data:image/jpeg;base64,@Convert.ToBase64String(Model.ImageData)" alt="Produit Image" style="max-width: 100%; height: auto;" />
             <form asp-action="AjouterAuPanier" asp-controller="Paniers" method="post">
                 <input type="hidden" name="idProduit" value="@Model.IdPr" />
-                <button class="cart-button" style="background:darkred; color:white;margin-top:80px; font-weight: bold;height:50px;width:80%">Add to Cart</button>
+                <button class="cart-button" style="background:darkred; color:white;font-weight: bold;height:50px;width:80%">Add to Cart</button>
             </form>
         </div>
         <div class="description">

@@ -2,37 +2,31 @@
 
 @{
     ViewData["Title"] = "Create";
+    int utilisateurId = ViewBag.UtilisateurId;
+
 }
 
-<h2>Create</h2>
+<link type="text/css" rel="stylesheet" href="/css/CreateU.css" />
+<div class="login-box">
+    <h2 style="color:#D41818;font-family: 'Berlin Sans FB';">Give your opinion</h2>
 
-<h4>Problem</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="IDU" class="control-label"></label>
-                <input asp-for="IDU" class="form-control" />
-                <span asp-validation-for="IDU" class="text-danger"></span>
+    <form asp-action="Create" method="post">
+        <div class="user-box">
+
+            <input asp-for="IDU" class="form-control" value="@utilisateurId" />
+
+            <label style="color:white;font-family: 'Berlin Sans FB';"> Add your opinion</label>
+            <br>
+            <br>
+            <input asp-for="Comment" class="form-control" required />
+
+            <div class="align">
             </div>
-            <div class="form-group">
-                <label asp-for="Comment" class="control-label"></label>
-                <input asp-for="Comment" class="form-control" />
-                <span asp-validation-for="Comment" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </form>
-    </div>
+
+            <button style="background:#D41818; color:white;font-family: 'Berlin Sans FB';margin-left:140px; margin-bottom:20px;">
+                <a style="color:white ;">Submit</a>
+            </button>
+        </div>
+    </form>
+
 </div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}

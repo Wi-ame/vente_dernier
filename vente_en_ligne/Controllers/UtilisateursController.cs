@@ -71,6 +71,12 @@ namespace vente_en_ligne.Controllers
             long total = Convert.ToInt64(totalAmount);
             if (utilisateur != null)
             {
+                ViewBag.UtilisateurEmail = utilisateur.Email;
+                int utilisateurId = utilisateur.ID;
+                TempData["UtilisateurId"] = utilisateurId;
+
+               
+
                 // L'e-mail existe, créer une session de paiement avec Stripe
                 StripeConfiguration.ApiKey = "sk_test_51OQiReEh5A0vvIjDBfwtWg77g2JxSXcGyXel8lT9H9HY60vDAQBgx11ReTvb7S7zkFih4BJbRHJSCGv1XaCTjsPX00gW2KOxYw";
 
@@ -94,7 +100,7 @@ namespace vente_en_ligne.Controllers
                 },
             },
                     Mode = "payment",
-                    SuccessUrl = Url.Action("Index", "Home", null, Request.Scheme),
+                    SuccessUrl = Url.Action("Create", "Problems", null, Request.Scheme),
                     CancelUrl = Url.Action("Error", "Home", null, Request.Scheme),
                 };
 
